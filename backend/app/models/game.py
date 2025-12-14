@@ -6,10 +6,8 @@ class SlidingPuzzleGame:
         self.size = 3
         self.reset_game(3)
 
-    # --- SỬA Ở ĐÂY: Thêm tham số size=3 ---
     def reset_game(self, size=3):
         self.size = size
-        # Tạo bàn cờ đích (GOAL_STATE) tự động theo size
         self.GOAL_STATE = []
         count = 1
         for r in range(size):
@@ -49,7 +47,6 @@ class SlidingPuzzleGame:
         r, c = self.empty_pos
         nr, nc = r, c
 
-        # Logic di chuyển
         if direction == 'UP': nr += 1
         elif direction == 'DOWN': nr -= 1
         elif direction == 'LEFT': nc += 1
@@ -57,7 +54,6 @@ class SlidingPuzzleGame:
         else:
             return False, "Invalid direction"
 
-        # Kiểm tra biên (Dùng self.size thay vì số 3 cứng nhắc)
         if 0 <= nr < self.size and 0 <= nc < self.size:
             self.board[r][c], self.board[nr][nc] = self.board[nr][nc], self.board[r][c]
             self.empty_pos = (nr, nc)
@@ -66,7 +62,6 @@ class SlidingPuzzleGame:
         return False, "Hit wall"
 
     def swap_two_tiles(self, r1, c1, r2, c2):
-        # Kiểm tra tọa độ (Dùng self.size)
         if not (0 <= r1 < self.size and 0 <= c1 < self.size and 0 <= r2 < self.size and 0 <= c2 < self.size):
             return False, "Tọa độ không hợp lệ"
 
